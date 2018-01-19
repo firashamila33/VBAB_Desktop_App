@@ -88,6 +88,89 @@ public class IdeeService implements IIdeeService {
 
         return idea;
     }
+    @Override
+    public List<Idee> getIdeesByUserId(Integer i) {
+        List<Idee> ideas = new ArrayList<>();
+        String req = "select * from idee where user_id=?";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+            preparedStatement.setInt(1, i);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Idee idea;
+                idea = new Idee(resultSet.getInt("id"),
+                        resultSet.getInt("user_id"),
+                        resultSet.getString("titre"),
+                        resultSet.getString("domaine"),
+                        resultSet.getString("description"),
+                        resultSet.getDate("date_ajout"),
+                        resultSet.getInt("prix"),
+                        resultSet.getString("path_doc"),
+                        resultSet.getString("path_img"),
+                        resultSet.getString("etat"));
+                ideas.add(idea);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return ideas;
+    }
+    
+    @Override
+    public List<Idee> getChecked() {
+        List<Idee> ideas = new ArrayList<>();
+        String req = "select * from idee where etat='OK'";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Idee idea;
+                idea = new Idee(resultSet.getInt("id"),
+                        resultSet.getInt("user_id"),
+                        resultSet.getString("titre"),
+                        resultSet.getString("domaine"),
+                        resultSet.getString("description"),
+                        resultSet.getDate("date_ajout"),
+                        resultSet.getInt("prix"),
+                        resultSet.getString("path_doc"),
+                        resultSet.getString("path_img"),
+                        resultSet.getString("etat"));
+                ideas.add(idea);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return ideas;
+    }
+    @Override
+    public List<Idee> getNonChecked() {
+        List<Idee> ideas = new ArrayList<>();
+        String req = "select * from idee where etat='NON'";
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Idee idea;
+                idea = new Idee(resultSet.getInt("id"),
+                        resultSet.getInt("user_id"),
+                        resultSet.getString("titre"),
+                        resultSet.getString("domaine"),
+                        resultSet.getString("description"),
+                        resultSet.getDate("date_ajout"),
+                        resultSet.getInt("prix"),
+                        resultSet.getString("path_doc"),
+                        resultSet.getString("path_img"),
+                        resultSet.getString("etat"));
+                ideas.add(idea);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return ideas;
+    }
 
     @Override
     public void add(Idee i) {
@@ -135,16 +218,6 @@ public class IdeeService implements IIdeeService {
     }
 
     public void update(Idee i) {
-        String req0 = "update idee  ("
-                + "user_id,"
-                + "titre,"
-                + "domaine,"
-                + "description,"
-                + "date_ajout,"
-                + "prix,"
-                + "path_doc,"
-                + "path_img,"
-                + "etat) values (?,?,?,?,?,?,?,?,?) where id=?";
         String req = "update idee set user_id=?, titre=?,domaine=?, description=?, date_ajout=?, prix=?, path_doc=?, path_img=?, etat=? where id = ?";
 
         PreparedStatement preparedStatement;
@@ -161,15 +234,27 @@ public class IdeeService implements IIdeeService {
             preparedStatement.setString(8, i.getPath_img());
             preparedStatement.setString(9, i.getEtat());
             preparedStatement.setInt(10, i.getId());
-            System.out.println(preparedStatement);
-
             preparedStatement.executeUpdate();
-            System.out.println(preparedStatement);
-            
+                       
             System.out.println("USER UPDATED");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @Override
+    public void check(Integer id) {
+    String req = "update idee set etat=? where id =?";
+            PreparedStatement preparedStatement;
+            try {
+                preparedStatement = connection.prepareStatement(req);
+                preparedStatement.setString(1, "OK");
+                preparedStatement.setInt(2, id);
+                preparedStatement.executeUpdate();
+                System.out.println("\n Idee CHecked !!!\n");
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }    
     }
 
 }

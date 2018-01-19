@@ -17,7 +17,11 @@ import models.User;
 public interface IIdeeService {
     List<Idee> getAll();
     Idee getIdeeById(Integer i);
+    List<Idee> getIdeesByUserId(Integer i);
+    List<Idee> getChecked();
+    List<Idee> getNonChecked();
     void add(Idee i);
     void delete(Integer id);
     void update(Idee i);
+    void check(Integer id);
 }

@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import services.IdeeService;
 
 /**
@@ -23,16 +24,13 @@ import services.IdeeService;
  */
 public class OneIdeasFXMLController extends ListCell<Idee> {
 
-    @FXML
-    private ImageView meal_image;
-    @FXML
-    private Label type_row_commande;
+    
     @FXML
     private Label name_row_commande;
+    
     @FXML
-    private Label price_row_commande;
-    @FXML
-    private Label quantity;
+    private AnchorPane row;
+    
     private FXMLLoader mLLoader;
 
     /**
@@ -63,7 +61,8 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
             }
         }
         IIdeeService I_tool = new IdeeService();
-        name_row_commande.setText(Ideas.getTitre());
-
+        name_row_commande.setText("tata");
+        setText(null);
+        setGraphic(row);
     }
 }

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package interfaces;
-
 import java.util.List;
 import models.Idee;
 import models.User;

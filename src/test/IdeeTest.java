@@ -20,15 +20,15 @@ import services.UserService;
  * @author plazma33
  */
 public class IdeeTest {
-
+ 
     public static void main(String[] args) {
+        
         List<Idee> ideas = new ArrayList<>();
         IIdeeService Idea_test = new IdeeService();
 //        Idee I = new Idee(10, "firas", "coding", "testing",Date.valueOf("2018-01-21"), 52, "a document", "an image", "NON");
 //        ideas=Idea_test.getAll();
 //        System.out.println(ideas);
 //        System.out.println(Idea_test.getIdeeById(11));
-        
         Idea_test.getIdeesByUserId(2).forEach((i) -> {
             System.out.println(i);
             System.out.println("\n");
@@ -45,6 +45,9 @@ public class IdeeTest {
 //        Idea_test.getNonChecked().forEach((i) -> {
 //            System.out.println(i);
 //        });
+
+
+
     }
 
 }

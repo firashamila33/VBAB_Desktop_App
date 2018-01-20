@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="1360.0" style="-fx-background-color: ff25;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.IdeesFXMLController">
+   <children>
+      <JFXListView fx:id="public_Ideas_list_view" layoutX="432.0" layoutY="82.0" prefHeight="420.0" prefWidth="784.0" />
+   </children>
+</AnchorPane>

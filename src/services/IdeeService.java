@@ -88,6 +88,8 @@ public class IdeeService implements IIdeeService {
 
         return idea;
     }
+    
+    
     @Override
     public List<Idee> getIdeesByUserId(Integer i) {
         List<Idee> ideas = new ArrayList<>();

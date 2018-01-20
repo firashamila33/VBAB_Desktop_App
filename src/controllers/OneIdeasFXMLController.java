@@ -26,7 +26,7 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
 
     
     @FXML
-    private Label name_row_commande;
+    private Label name_row_commane;
     
     @FXML
     private AnchorPane row;
@@ -49,7 +49,7 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
 
         } else {
             if (mLLoader == null) {
-                mLLoader = new FXMLLoader(getClass().getResource("/gui/oneIdeasFXML.fxml"));
+                mLLoader = new FXMLLoader(getClass().getResource("../gui/oneIdeasFXML.fxml"));
                 mLLoader.setController(this);
 
                 try {
@@ -59,10 +59,11 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
                 }
 
             }
-        }
+        
         IIdeeService I_tool = new IdeeService();
-        name_row_commande.setText("tata");
+        name_row_commane.setText(Ideas.getTitre());
         setText(null);
         setGraphic(row);
+        }
     }
 }

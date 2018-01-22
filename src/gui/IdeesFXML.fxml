@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
 <?import com.jfoenix.controls.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,8 +9,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="560.0" prefWidth="1360.0" style="-fx-background-color: 48c7ec" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.IdeesFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="406.0" prefWidth="1360.0" style="-fx-background-color: #222035;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.IdeesFXMLController">
    <children>
-      <JFXListView fx:id="public_Ideas_list_view" layoutX="432.0" layoutY="82.0" prefHeight="420.0" prefWidth="784.0" />
+      <JFXListView fx:id="public_Ideas_list_view" layoutX="432.0" layoutY="82.0" prefHeight="420.0" prefWidth="662.0" />
+      <Pane layoutY="-1.0" prefHeight="560.0" prefWidth="276.0" style="-fx-background-color: #48c7ec;">
+         <children>
+            <JFXButton layoutX="4.0" layoutY="273.0" onAction="#show_all_ideas" prefHeight="52.0" prefWidth="269.0" text="All IDEAS" textFill="#222133">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="4.0" layoutY="325.0" onAction="#show_my_ideas" prefHeight="52.0" prefWidth="269.0" text="MY IDEAS" textFill="#222133">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="4.0" layoutY="378.0" prefHeight="52.0" prefWidth="269.0" text="CREATE NEW IDEA" textFill="#222133">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </JFXButton>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="73.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../ressources/Bright-Ieas-07.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="User_name" layoutX="59.0" layoutY="195.0" prefHeight="31.0" prefWidth="175.0" text="USER NAME" textFill="#222035">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="25.0" />
+               </font>
+            </Label>
+            <Pane layoutY="232.0" opacity="0.6" prefHeight="5.0" prefWidth="276.0" style="-fx-background-color: white;" />
+            <Pane layoutY="185.0" opacity="0.6" prefHeight="5.0" prefWidth="276.0" style="-fx-background-color: white;" />
+         </children>
+      </Pane>
+      <JFXListView fx:id="public_Ideas_list_view_me" layoutX="436.0" layoutY="80.0" prefHeight="420.0" prefWidth="752.0" />
    </children>
 </AnchorPane>

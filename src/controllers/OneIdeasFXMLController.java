@@ -5,13 +5,17 @@
  */
 package controllers;
 
-
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXListView;
 import interfaces.IIdeeService;
 import models.Idee;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
@@ -25,17 +29,16 @@ import services.IdeeService;
  */
 public class OneIdeasFXMLController extends ListCell<Idee> {
 
-    
     @FXML
     private Label idea_title;
     @FXML
     private Label quantity;
     @FXML
-    private Label idea_domaine ;
+    private Label idea_domaine;
     @FXML
-    private Label idea_description ;  
+    private Label idea_description;
     @FXML
-    private Label idea_price ;
+    private Label idea_price;
     @FXML
     private AnchorPane row;
     private FXMLLoader mLLoader;
@@ -43,21 +46,19 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
     private JFXButton edit_idea_button;
     @FXML
     private JFXButton garbage_idea_button;
-    
+
     @FXML
     private ImageView unchecked_icon;
     @FXML
     private ImageView checked_icon;
-    
-    private   int state=0;
+    @FXML
+    public JFXListView<Idee> public_Ideas_list_view;
+
+    private int state = 0;
 
     public OneIdeasFXMLController(int state) {
-        this.state=state;
+        this.state = state;
     }
-    
-    
-    
-    
 
     /**
      * Initializes the controller class.
@@ -85,39 +86,51 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
                 }
 
             }
-        
-        IIdeeService I_tool = new IdeeService();
-        idea_title.setText(Ideas.getTitre());
-        idea_domaine.setText(Ideas.getDomaine());
-        idea_description.setText(Ideas.getDescription());
-        idea_price.setText(Ideas.getPrix()+"$");
-        
-        
-        if(state==1){//this shows private ideas
-            
-            if(Ideas.getEtat().equals("NON")){
-                unchecked_icon.setVisible(true);
-                checked_icon.setVisible(false);
-                System.out.println("unchecked");
-            }else if(Ideas.getEtat().equals("OK")){
+
+            IIdeeService I_tool = new IdeeService();
+            idea_title.setText(Ideas.getTitre());
+            idea_domaine.setText(Ideas.getDomaine());
+            idea_description.setText(Ideas.getDescription());
+            idea_price.setText(Ideas.getPrix() + "$");
+
+            if (state == 1) {//this shows private ideas
+
+                if (Ideas.getEtat().equals("NON")) {
+                    unchecked_icon.setVisible(true);
+                    checked_icon.setVisible(false);
+                    System.out.println("unchecked");
+                } else if (Ideas.getEtat().equals("OK")) {
+                    unchecked_icon.setVisible(false);
+                    checked_icon.setVisible(true);
+                    System.out.println("checked");
+                }
+                System.out.println("YEEEEES I AM IN MY IDEAS");
+                edit_idea_button.setVisible(true);
+                garbage_idea_button.setVisible(true);
+
+            } else if (state == 0) {//this shows public ideas
                 unchecked_icon.setVisible(false);
-                checked_icon.setVisible(true);
-                System.out.println("checked");
+                checked_icon.setVisible(false);
+                System.out.println("NOOO I AM IN ALL IDEAS");
+                edit_idea_button.setVisible(false);
+                garbage_idea_button.setVisible(false);
             }
-            System.out.println("YEEEEES I AM IN MY IDEAS");
-            edit_idea_button.setVisible(true);
-            garbage_idea_button.setVisible(true);
-            
-        
-        }else if(state==0){//this shows public ideas
-            unchecked_icon.setVisible(false);
-            checked_icon.setVisible(false);
-            System.out.println("NOOO I AM IN ALL IDEAS");
-            edit_idea_button.setVisible(false);
-            garbage_idea_button.setVisible(false);
+            setText(null);
+            setGraphic(row);
+            garbage_idea_button.setOnAction(event -> {
+                I_tool.delete(Ideas.getId());
+                System.out.println("DELLEEETING the IDEA ");
+                getListView().getItems().remove(Ideas);
+                getListView().refresh();
+
+            });
+
         }
-        setText(null);
-        setGraphic(row);
-        }
+
+    }
+
+    @FXML
+    private void delete_idea_btn(ActionEvent event) {
+
     }
 }

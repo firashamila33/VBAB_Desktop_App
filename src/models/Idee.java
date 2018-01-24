@@ -48,6 +48,10 @@ public class Idee {
         this.etat = etat;
     }
 
+    public Idee() {
+    }
+    
+
     public int getId() {
         return id;
     }

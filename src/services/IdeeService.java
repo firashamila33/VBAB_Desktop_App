@@ -197,7 +197,7 @@ public class IdeeService implements IIdeeService {
             preparedStatement.setInt(6, i.getPrix());
             preparedStatement.setString(7, i.getPath_doc());
             preparedStatement.setString(8, i.getPath_img());
-            preparedStatement.setString(9, i.getEtat());
+            preparedStatement.setString(9, "NON");
             preparedStatement.executeUpdate();
             System.out.println("USER ADDED");
         } catch (SQLException ex) {

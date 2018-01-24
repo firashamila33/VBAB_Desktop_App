@@ -46,6 +46,9 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
     private JFXButton edit_idea_button;
     @FXML
     private JFXButton garbage_idea_button;
+    
+    @FXML
+    private JFXButton check_idea_button1;
 
     @FXML
     private ImageView unchecked_icon;
@@ -53,6 +56,12 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
     private ImageView checked_icon;
     @FXML
     public JFXListView<Idee> public_Ideas_list_view;
+//    @FXML
+//    private JFXListView<Idee> public_Ideas_list_view_me;
+//    @FXML
+//    private AnchorPane add_form_details;
+//    @FXML
+//    private AnchorPane add_forvm_details1;
 
     private int state = 0;
 
@@ -107,6 +116,7 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
                 System.out.println("YEEEEES I AM IN MY IDEAS");
                 edit_idea_button.setVisible(true);
                 garbage_idea_button.setVisible(true);
+                check_idea_button1.setVisible(false);
 
             } else if (state == 0) {//this shows public ideas
                 unchecked_icon.setVisible(false);
@@ -114,12 +124,49 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
                 System.out.println("NOOO I AM IN ALL IDEAS");
                 edit_idea_button.setVisible(false);
                 garbage_idea_button.setVisible(false);
+                check_idea_button1.setVisible(false);
+                
+            }else if(state==2){//this shows unchecked ideas to the Admin
+                unchecked_icon.setVisible(false);
+                checked_icon.setVisible(false);
+                System.out.println("NOOO I AM IN ALL IDEAS");
+                edit_idea_button.setVisible(false);
+                unchecked_icon.setVisible(false);
+                checked_icon.setVisible(false);
             }
             setText(null);
             setGraphic(row);
+            
+            
+            
             garbage_idea_button.setOnAction(event -> {
                 I_tool.delete(Ideas.getId());
                 System.out.println("DELLEEETING the IDEA ");
+                getListView().getItems().remove(Ideas);
+                getListView().refresh();
+
+            });
+
+            edit_idea_button.setOnAction(event -> {
+                FXMLLoader fXMLLoader = new FXMLLoader(getClass().getResource("/gui/IdeesFXML.fxml"));
+                try {
+                    Parent root = (Parent) fXMLLoader.load();
+                    IdeesFXMLController dialogueLayoutController = fXMLLoader.<IdeesFXMLController>getController();
+                    dialogueLayoutController.EditIdea(Ideas);
+                    dialogueLayoutController.ideat_titre.setText("fifo");
+                    dialogueLayoutController.User_name.setText("eded");
+                    System.out.println("yeah I am going to edit it");
+                    getListView().setVisible(false);
+                   
+                } catch (IOException ex) {
+                    Logger.getLogger(OneIdeasFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+            
+            
+            check_idea_button1.setOnAction(event -> {
+                I_tool.check(Ideas.getId());
+                System.out.println("CHecking the IDEA ");
                 getListView().getItems().remove(Ideas);
                 getListView().refresh();
 

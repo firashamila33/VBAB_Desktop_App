@@ -83,7 +83,7 @@ public class UserService implements IUserService {
                         resultSet.getInt("numtelephone"),
                         resultSet.getString("adresse"),
                         resultSet.getDate("dateajout"),
-                        resultSet.getString("adresse"));
+                        resultSet.getString("role"));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

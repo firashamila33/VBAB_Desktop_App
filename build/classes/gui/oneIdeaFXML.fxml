@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="row" prefHeight="135.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane id="AnchorPane" fx:id="row" prefHeight="135.0" prefWidth="746.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane id="Anchorpane" layoutY="5.0" prefHeight="125.0" prefWidth="737.0">
          <children>
@@ -111,6 +111,15 @@
                   <Image url="@../ressources/checked.png" />
                </image>
             </ImageView>
+            <JFXButton fx:id="check_idea_button1" layoutX="660.0" layoutY="74.0" prefHeight="42.0" prefWidth="40.0" text=" ">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../ressources/checked%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
 <!--            <JFXButton fx:id="substruct_btn" layoutX="26.0" layoutY="54.0" onAction="#sustruct_quantity" prefHeight="21.0" prefWidth="17.0" text=" ">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="9.0" pickOnBounds="true" preserveRatio="true">

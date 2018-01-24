@@ -220,7 +220,7 @@ public class IdeeService implements IIdeeService {
     }
 
     public void update(Idee i) {
-        String req = "update idee set user_id=?, titre=?,domaine=?, description=?, date_ajout=?, prix=?, path_doc=?, path_img=?, etat=? where id = ?";
+        String req = "update idee set user_id=?, titre=?,domaine=?, description=?, date_ajout=?, prix=?, path_doc=?, path_img=? where id = ?";
 
         PreparedStatement preparedStatement;
         try {
@@ -234,11 +234,10 @@ public class IdeeService implements IIdeeService {
             preparedStatement.setInt(6, i.getPrix());
             preparedStatement.setString(7, i.getPath_doc());
             preparedStatement.setString(8, i.getPath_img());
-            preparedStatement.setString(9, i.getEtat());
-            preparedStatement.setInt(10, i.getId());
+            preparedStatement.setInt(9, i.getId());
             preparedStatement.executeUpdate();
                        
-            System.out.println("USER UPDATED");
+            System.out.println("Idee UPDATED");
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

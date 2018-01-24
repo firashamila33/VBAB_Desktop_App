@@ -85,9 +85,14 @@ public class IdeesFXMLController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         //getting the user from database
         IUserService U_tools = new UserService();
+        
         //setting the static user ,, in here you should be getting the static 
         //user from the user class where there will be a final static user attrebute
+        //for example 
+        //User u = new user();
+        //Static_User= u.static_user;
 
+        //--->so this line below is now setted manually ,, it should be replaced by the code demonstrated 
         Static_User = U_tools.getUserById(8);
         
         System.out.println(Static_User.getRole());

@@ -122,7 +122,7 @@
             </ImageView>
             <Label fx:id="User_name" layoutX="59.0" layoutY="195.0" prefHeight="31.0" prefWidth="175.0" text="USER NAME" textFill="#222035">
                <font>
-                  <Font name="Arial Rounded MT Bold" size="25.0" />
+                  <Font name="Arial Rounded MT Bold" size="18.0" />
                </font>
             </Label>
             <Pane layoutY="232.0" opacity="0.6" prefHeight="5.0" prefWidth="276.0" style="-fx-background-color: white;" />

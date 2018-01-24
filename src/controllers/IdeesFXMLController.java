@@ -88,9 +88,7 @@ public class IdeesFXMLController implements Initializable {
         //setting the static user ,, in here you should be getting the static 
         //user from the user class where there will be a final static user attrebute
 
-        Static_User = U_tools.getUserById(10);
-        User_name.setText(Static_User.getNom());
-        
+        Static_User = U_tools.getUserById(8);
         
         System.out.println(Static_User.getRole());
         
@@ -98,6 +96,7 @@ public class IdeesFXMLController implements Initializable {
         
         //hiding client modules and showing the Adming unchecked ideas list
         if (Static_User.getRole().equals("Admin")) {
+            User_name.setText("Admin : "+Static_User.getNom());
             public_Ideas_list_view.setVisible(false);
             add_forvm_details1.setVisible(false);
             add_form_details.setVisible(false);
@@ -113,7 +112,7 @@ public class IdeesFXMLController implements Initializable {
         
         //showing client modules
         if (Static_User.getRole().equals("Client")) {
-
+            User_name.setText("Client : "+Static_User.getNom());
             //displaying all ideas to the list view
             Idees_list = FXCollections.observableArrayList(I_tool.getChecked());
             public_Ideas_list_view.setItems(Idees_list);

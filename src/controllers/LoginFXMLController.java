@@ -61,7 +61,9 @@ public class LoginFXMLController implements Initializable {
                 System.out.println("Bienvenue a l'espace idees");
 
                 User.static_user = us;
+                
                 System.out.println(User.static_user); 
+                
                 stage = (Stage) login.getScene().getWindow();
                 root = FXMLLoader.load(getClass().getResource("/gui/IdeesFXML.fxml"));
                 Scene scene = new Scene(root);

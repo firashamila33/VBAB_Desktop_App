@@ -43,7 +43,7 @@ public class IdeesFXMLController implements Initializable {
     @FXML
     public JFXListView<Idee> public_Ideas_list_view;
     private ObservableList<Idee> Idees_list;
-    
+
     @FXML
     public Label User_name;
     @FXML
@@ -82,7 +82,7 @@ public class IdeesFXMLController implements Initializable {
     private JFXButton show_all_ideas_btn;
     @FXML
     private JFXButton logout_btn;
-    
+
     Stage stage;
     Parent root;
 
@@ -90,35 +90,34 @@ public class IdeesFXMLController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) { 
+    public void initialize(URL location, ResourceBundle resources) {
         IIdeeService I_tool = new IdeeService();
         //hiding client modules and showing the Adming unchecked ideas list
         if (User.static_user.getRole().equals("Admin")) {
-            User_name.setText("Admin : "+User.static_user.getNom());
+            User_name.setText("Admin : " + User.static_user.getNom());
             public_Ideas_list_view.setVisible(false);
             add_forvm_details1.setVisible(false);
             add_form_details.setVisible(false);
             show_my_ideas_btn.setVisible(false);
             add_btn.setVisible(false);
-            edit.setVisible(false);   
+            edit.setVisible(false);
             show_all_ideas_btn.setVisible(false);
             //displaying all ideas to the list view
             Idees_list = FXCollections.observableArrayList(I_tool.getNonChecked());
             public_Ideas_list_view_me.setItems(Idees_list);
             public_Ideas_list_view_me.setCellFactory(f -> new OneIdeasFXMLController(2));
         }
-        
-        
+
         //showing client modules
         if (User.static_user.getRole().equals("Client")) {
-            User_name.setText("Client : "+User.static_user.getNom());
+            User_name.setText("Client : " + User.static_user.getNom());
             //displaying all ideas to the list view
             Idees_list = FXCollections.observableArrayList(I_tool.getChecked());
             public_Ideas_list_view.setItems(Idees_list);
             public_Ideas_list_view.setCellFactory(f -> new OneIdeasFXMLController(0));
 
             //displaying the user ideas to the list view
-            Idees_list_me = FXCollections.observableArrayList(I_tool.getIdeesByUserId(2));
+            Idees_list_me = FXCollections.observableArrayList(I_tool.getIdeesByUserId(User.static_user.getId()));
             public_Ideas_list_view_me.setItems(Idees_list_me);
             public_Ideas_list_view_me.setCellFactory(f -> new OneIdeasFXMLController(1));
 
@@ -182,7 +181,7 @@ public class IdeesFXMLController implements Initializable {
         }
 
         i.setDate_ajout(new java.sql.Date(startDate.getTime()));
-        i.setUser_id(2);
+        i.setUser_id(User.static_user.getId());
         i.setEtat("NON");
         System.out.println(i);
         //adding idea to database
@@ -234,23 +233,21 @@ public class IdeesFXMLController implements Initializable {
         }
 
     }
-    
-    
 
-    @FXML
     private void delete_idea_btn(ActionEvent event) throws IOException {
-        
-        
-                
-                stage = (Stage) logout_btn.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("/gui/LoginFXML.fxml"));
-                Scene scene = new Scene(root);
-                stage.setScene(scene);
-                stage.centerOnScreen();
-                stage.setResizable(true);
-                stage.show();
-        
+
     }
 
+    @FXML
+    private void logout_action(ActionEvent event) throws IOException {
+
+        stage = (Stage) logout_btn.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("/gui/LoginFXML.fxml"));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.centerOnScreen();
+        stage.setResizable(true);
+        stage.show();
+    }
 
 }

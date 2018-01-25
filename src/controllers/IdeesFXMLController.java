@@ -222,6 +222,7 @@ public class IdeesFXMLController implements Initializable {
     @FXML
     private void get_eit_idea_details(ActionEvent event) {
         //filling the form from static idea when button clicked
+        System.out.println(Idea);
         if (Idea.getId() > 0) {
             idea_image.setText(Idea.getPath_img());
             idea_doc.setText(Idea.getPath_doc());

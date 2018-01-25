@@ -18,12 +18,12 @@
                   <Image url="@../../../../../Desktop/ESPRIT/GIT/Esprit4All_JAVA/src/ressources/menu-modern-5-310x260.png" />
                </image>
             </ImageView>-->
-            <Label fx:id="type_row_commande" layoutX="127.0" layoutY="83.0" prefHeight="20.0" prefWidth="85.0" text="Description :" textFill="#b2afaf">
+            <Label fx:id="type_row_commande" layoutX="130.0" layoutY="83.0" prefHeight="20.0" prefWidth="85.0" text="Description :" textFill="#b2afaf">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="idea_title" layoutX="196.0" layoutY="14.0" prefHeight="21.0" prefWidth="184.0" text="Hamburger Special">
+            <Label fx:id="idea_title" layoutX="193.0" layoutY="14.0" prefHeight="21.0" prefWidth="184.0" text="Hamburger Special">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -52,17 +52,17 @@
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="idea_description" layoutX="220.0" layoutY="81.0" prefHeight="23.0" prefWidth="250.0" text="Description :Description :Description :Description :Description :" textFill="#b2afaf">
+            <Label fx:id="idea_description" layoutX="223.0" layoutY="81.0" prefHeight="23.0" prefWidth="250.0" text="Description :Description :Description :Description :Description :" textFill="#b2afaf">
                <font>
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="name_row_commane11" layoutX="127.0" layoutY="45.0" prefHeight="21.0" prefWidth="97.0" text="Domaine :" textFill="#000000b8">
+            <Label fx:id="name_row_commane11" layoutX="130.0" layoutY="45.0" prefHeight="21.0" prefWidth="97.0" text="Domaine :" textFill="#000000b8">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="idea_domaine" layoutX="246.0" layoutY="45.0" prefHeight="21.0" prefWidth="184.0" text="Hamburger Special" textFill="#000000c5">
+            <Label fx:id="idea_domaine" layoutX="237.0" layoutY="45.0" prefHeight="21.0" prefWidth="184.0" text="Hamburger Special" textFill="#000000c5">
                <font>
                   <Font name="Arial Bold" size="18.0" />
                </font>
@@ -120,6 +120,11 @@
                   </ImageView>
                </graphic>
             </JFXButton>
+            <Label fx:id="username" layoutX="19.0" layoutY="105.0" prefHeight="20.0" prefWidth="85.0" text="Username" textFill="#f2a4a4">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
 <!--            <JFXButton fx:id="substruct_btn" layoutX="26.0" layoutY="54.0" onAction="#sustruct_quantity" prefHeight="21.0" prefWidth="17.0" text=" ">
                <graphic>
                   <ImageView fitHeight="17.0" fitWidth="9.0" pickOnBounds="true" preserveRatio="true">

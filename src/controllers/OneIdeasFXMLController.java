@@ -8,6 +8,7 @@ package controllers;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXListView;
 import interfaces.IIdeeService;
+import interfaces.IUserService;
 import models.Idee;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import services.IdeeService;
+import services.UserService;
 
 /**
  * FXML Controller class
@@ -56,12 +58,8 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
     private ImageView checked_icon;
     @FXML
     public JFXListView<Idee> public_Ideas_list_view;
-//    @FXML
-//    private JFXListView<Idee> public_Ideas_list_view_me;
-//    @FXML
-//    private AnchorPane add_form_details;
-//    @FXML
-//    private AnchorPane add_forvm_details1;
+    @FXML
+    private Label username;
 
     private int state = 0;
 
@@ -97,26 +95,31 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
             }
 
             IIdeeService I_tool = new IdeeService();
+            IUserService U_Tool = new UserService();
             idea_title.setText(Ideas.getTitre());
             idea_domaine.setText(Ideas.getDomaine());
             idea_description.setText(Ideas.getDescription());
             idea_price.setText(Ideas.getPrix() + "$");
-
+            
             if (state == 1) {//this shows private ideas
 
                 if (Ideas.getEtat().equals("NON")) {
                     unchecked_icon.setVisible(true);
                     checked_icon.setVisible(false);
+                    edit_idea_button.setVisible(true);
+                    
                     System.out.println("unchecked");
                 } else if (Ideas.getEtat().equals("OK")) {
                     unchecked_icon.setVisible(false);
                     checked_icon.setVisible(true);
                     System.out.println("checked");
+                    edit_idea_button.setVisible(false);
                 }
                 System.out.println("YEEEEES I AM IN MY IDEAS");
-                edit_idea_button.setVisible(true);
+                
                 garbage_idea_button.setVisible(true);
                 check_idea_button1.setVisible(false);
+                username.setVisible(false);
 
             } else if (state == 0) {//this shows public ideas
                 unchecked_icon.setVisible(false);
@@ -125,6 +128,7 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
                 edit_idea_button.setVisible(false);
                 garbage_idea_button.setVisible(false);
                 check_idea_button1.setVisible(false);
+                username.setVisible(false);
                 
             }else if(state==2){//this shows unchecked ideas to the Admin
                 unchecked_icon.setVisible(false);
@@ -133,6 +137,8 @@ public class OneIdeasFXMLController extends ListCell<Idee> {
                 edit_idea_button.setVisible(false);
                 unchecked_icon.setVisible(false);
                 checked_icon.setVisible(false);
+                username.setVisible(true);
+                username.setText(U_Tool.getUserById(Ideas.getUser_id()).getUsername());
             }
             setText(null);
             setGraphic(row);

@@ -15,6 +15,7 @@ import models.User;
 public interface IUserService{
     List<User> getAll();
     User getUserById(Integer i);
+    User Login_User(String Username,String Password); 
     
 
 }

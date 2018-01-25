@@ -9,11 +9,8 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import interfaces.IIdeeService;
-import interfaces.IUserService;
-import java.awt.AWTEvent;
-import java.awt.Toolkit;
+import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -24,13 +21,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import models.Idee;
 import models.User;
 import services.IdeeService;
-import services.UserService;
 
 /**
  * FXML Controller class
@@ -42,7 +43,7 @@ public class IdeesFXMLController implements Initializable {
     @FXML
     public JFXListView<Idee> public_Ideas_list_view;
     private ObservableList<Idee> Idees_list;
-    public User Static_User;
+    
     @FXML
     public Label User_name;
     @FXML
@@ -77,37 +78,30 @@ public class IdeesFXMLController implements Initializable {
     public int state_action = 0; //0 if user is going to use the form for adding and 1 if the user will edit an idea
     @FXML
     private JFXButton show_my_ideas_btn;
+    @FXML
+    private JFXButton show_all_ideas_btn;
+    @FXML
+    private JFXButton logout_btn;
+    
+    Stage stage;
+    Parent root;
 
     /**
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        //getting the user from database
-        IUserService U_tools = new UserService();
-        
-        //setting the static user ,, in here you should be getting the static 
-        //user from the user class where there will be a final static user attrebute
-        //for example 
-        //User u = new user();
-        //Static_User= u.static_user;
-
-        //--->so this line below is now setted manually ,, it should be replaced by the code demonstrated 
-        Static_User = U_tools.getUserById(8);
-        
-        System.out.println(Static_User.getRole());
-        
+    public void initialize(URL location, ResourceBundle resources) { 
         IIdeeService I_tool = new IdeeService();
-        
         //hiding client modules and showing the Adming unchecked ideas list
-        if (Static_User.getRole().equals("Admin")) {
-            User_name.setText("Admin : "+Static_User.getNom());
+        if (User.static_user.getRole().equals("Admin")) {
+            User_name.setText("Admin : "+User.static_user.getNom());
             public_Ideas_list_view.setVisible(false);
             add_forvm_details1.setVisible(false);
             add_form_details.setVisible(false);
             show_my_ideas_btn.setVisible(false);
             add_btn.setVisible(false);
-            edit.setVisible(false);       
+            edit.setVisible(false);   
+            show_all_ideas_btn.setVisible(false);
             //displaying all ideas to the list view
             Idees_list = FXCollections.observableArrayList(I_tool.getNonChecked());
             public_Ideas_list_view_me.setItems(Idees_list);
@@ -116,8 +110,8 @@ public class IdeesFXMLController implements Initializable {
         
         
         //showing client modules
-        if (Static_User.getRole().equals("Client")) {
-            User_name.setText("Client : "+Static_User.getNom());
+        if (User.static_user.getRole().equals("Client")) {
+            User_name.setText("Client : "+User.static_user.getNom());
             //displaying all ideas to the list view
             Idees_list = FXCollections.observableArrayList(I_tool.getChecked());
             public_Ideas_list_view.setItems(Idees_list);
@@ -240,5 +234,23 @@ public class IdeesFXMLController implements Initializable {
         }
 
     }
+    
+    
+
+    @FXML
+    private void delete_idea_btn(ActionEvent event) throws IOException {
+        
+        
+                
+                stage = (Stage) logout_btn.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("/gui/LoginFXML.fxml"));
+                Scene scene = new Scene(root);
+                stage.setScene(scene);
+                stage.centerOnScreen();
+                stage.setResizable(true);
+                stage.show();
+        
+    }
+
 
 }

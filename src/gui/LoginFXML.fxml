@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="214.0" prefWidth="275.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controllers.LoginFXMLController">
+    <children>
+        <Pane opacity="0.68" prefHeight="214.0" prefWidth="275.0" style="-fx-background-color: #48c7ec;">
+         <children>
+            <Label layoutX="22.0" layoutY="-6.0" prefHeight="68.0" prefWidth="245.0" text="Espace Idees" textFill="#7345bf">
+               <font>
+                  <Font name="Andalus" size="42.0" />
+               </font>
+            </Label>
+            <JFXTextField fx:id="username_idee" labelFloat="true" layoutX="63.0" layoutY="69.0" promptText="Pseudo" />
+            <JFXPasswordField fx:id="mot_de_passe_idee" labelFloat="true" layoutX="63.0" layoutY="118.0" promptText="Mot de passe" unFocusColor="#ae5555">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </JFXPasswordField>
+            <JFXButton fx:id="login" layoutX="94.0" layoutY="175.0" onAction="#login_ideas_btn" prefHeight="25.0" prefWidth="74.0" style="-fx-background-color: #7345bf;" text="Login" />
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>

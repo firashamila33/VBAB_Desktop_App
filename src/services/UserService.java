@@ -91,6 +91,36 @@ public class UserService implements IUserService {
 
         return u;
     }
+    
+    public User Login_User(String Username,String Password) {
+        String req = "select * from user where username=? and password=?";
+        User u = null;
+        PreparedStatement preparedStatement;
+        try {
+            preparedStatement = connection.prepareStatement(req);
+            preparedStatement.setString(1, Username);
+            preparedStatement.setString(2, Password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                u = new User(resultSet.getInt("id_user"),
+                        resultSet.getString("nom"),
+                        resultSet.getString("prenom"),
+                        resultSet.getString("cin"),
+                        resultSet.getDate("datenaissance"),
+                        resultSet.getString("username"),
+                        resultSet.getString("password"),
+                        resultSet.getString("email"),
+                        resultSet.getInt("numtelephone"),
+                        resultSet.getString("adresse"),
+                        resultSet.getDate("dateajout"),
+                        resultSet.getString("role"));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return u;
+    }
 
     
 

@@ -26,6 +26,7 @@ public class User {
     private String adresse;
     private Date dateajout;
     private String role;
+    public static User static_user;
 
     public User() {
         

@@ -22,7 +22,7 @@ public class IdeeHome extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/gui/IdeesFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/gui/LoginFXML.fxml"));
         stage.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(root);
         stage.centerOnScreen();
